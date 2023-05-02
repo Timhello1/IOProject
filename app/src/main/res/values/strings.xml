@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">IOProject</string>
+    <string name="email">Podaj email</string>
+    <string name="login">Podaj login</string>
+    <string name="password1">Podaj hasło</string>
+    <string name="password2">Podaj ponownie hasło</string>
+    <string name="register">Zarejestruj się</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="assortment">Have a look at our products</string>
+    <string name="password">Password</string>
+    <string name="Log_in">Rejestruj</string>
+    <string name="error">Possible errors</string>
+    <string name="order1">Order with address</string>
+    <string name="order2">Order to the shop</string>
+    <string name="login1">Login</string>
+    <string name="wpisz_has_o">Wpisz hasło</string>
+    <string name="wpisz_e_mail">Wpisz e-mail</string>
+    <string name="powt_rz_has_o">Powtórz hasło</string>
+    <string name="wpisz_login">Wpisz login</string>
+    <string name="zaloguj_si">Zaloguj się</string>
+    <string name="no_password">BRAK HASŁA</string>
+    <string name="old_price">3600 zł</string>
+    <string name="serial_code">Podaj kod seryjny admina</string>
+</resources>
