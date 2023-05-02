@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/bottom_menu_home_icon"/>
+
+    <item
+        android:id="@+id/shop"
+        android:title="Shop"
+        android:icon="@drawable/bottom_menu_icon_shop"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/discounts"
+        android:title="Discounts"
+        android:icon="@drawable/bottom_menu_icon_discount" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/bottom_menu_icon_settings" />
+
+</menu>

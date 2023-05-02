@@ -1,8 +1,8 @@
 package com.example.ioproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
@@ -11,66 +11,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.ioproject.shop.ShopActivity;
+import com.example.ioproject.user.user;
 
-
+/**
+ * Fragment dla logowania
+ */
+//TODO ZMIENIĆ NAZWĘ FRAGMENTU
 public class SampleFragment2 extends Fragment {
 
-    private FirebaseAuth firebaseAuth;
-    private EditText emailfield;
-    private EditText passwordfield;
-    private Button logInButton;
-    private TextView errorTextView;
+    private EditText emailField;
+    private EditText passwordField;
+    private Button loginButton;
 
-        public SampleFragment2(){
+    public SampleFragment2() {
 
-        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        View root = inflater.inflate(R.layout.fragment_sample2, container, false);
 
-        View root = inflater.inflate(R.layout.fragment_sample2,container,false);
+        emailField = root.findViewById(R.id.login_userLoginInput);
+        passwordField = root.findViewById(R.id.login_userPasswordInput);
+        loginButton = root.findViewById(R.id.login_button);
 
-//        emailfield = root.findViewById(R.id.editTextTextPersonName);
-//        passwordfield = root.findViewById(R.id.editTextTextPassword);
-//        logInButton = root.findViewById(R.id.button);
-//        errorTextView = root.findViewById(R.id.editTextTextPersonName4);
-//
-//        logInButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String email = emailfield.getText().toString().trim();
-//                String password = passwordfield.getText().toString().trim();
-//
-//                firebaseAuth.signInWithEmailAndPassword(email, password)
-//                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    FirebaseUser user = firebaseAuth.getCurrentUser();
-//                                    Toast.makeText(getActivity(), "LogIn succesfull", Toast.LENGTH_SHORT).show();
-//
-//                                    // User login successful
-//                                } else {
-//                                    // User login failed
-//                                    Toast.makeText(getActivity(), "LogIn failed", Toast.LENGTH_SHORT).show();
-//                                    errorTextView.setText(task.getException().getMessage());
-//                                }
-//                            }
-//                        });
-//            }
-//        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = emailField.getText().toString();
+                String password = passwordField.getText().toString();
+                user user = new user();
+                //user.loginUser(email, password, getActivity());
+                //TODO LOGOWANIE I GUZIK SKIPA DO GŁÓWNEGO MENU
+                Intent intent = new Intent(view.getContext(),ShopActivity.class);
+                startActivity(intent);
 
+            }
+        });
         return root;
     }
 }

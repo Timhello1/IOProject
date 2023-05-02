@@ -19,13 +19,12 @@ public class SampleFragment extends Fragment {
 
 
 
-
+//TODO TUTAJ NIE WIEM CO Z TYM ROBIMY CZY USUWAMY, CZY JAK, TO JUŻ ZOSTAWIAM TOBIE
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_sample,container,false);
-        return root;
+        return inflater.inflate(R.layout.fragment_sample,container,false);
     }
 }

@@ -19,4 +19,5 @@
     <string name="wpisz_login">Wpisz login</string>
     <string name="zaloguj_si">Zaloguj się</string>
     <string name="no_password">BRAK HASŁA</string>
+    <string name="old_price">3600 zł</string>
 </resources>

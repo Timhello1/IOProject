@@ -21,9 +21,12 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ioproject.user.Password;
-import com.example.ioproject.user.userRegister;
+import com.example.ioproject.user.user;
 
-
+/**
+ * Fragment dla rejestracji
+ */
+//TODO ZMIENIĆ NAZWĘ FRAGMENTU
 public class SampleFragment3 extends Fragment {
 
     private EditText EmailField, Password1Field, Password2Field;
@@ -44,11 +47,11 @@ public class SampleFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sample3, container, false);
+        Button registerButton = root.findViewById(R.id.button);
 
         EmailField = root.findViewById(R.id.editTextTextPersonName2);
         Password1Field = root.findViewById(R.id.editTextTextPassword);
         Password2Field = root.findViewById(R.id.editTextTextPassword3);
-        Button registerButton = root.findViewById(R.id.button);
         progressBar = root.findViewById(R.id.progressBar);
         registrationLock = root.findViewById(R.id.registrationImageLock);
         regImgValid = root.findViewById(R.id.registrationImageValidation);
@@ -59,11 +62,11 @@ public class SampleFragment3 extends Fragment {
         fadeIn = AnimationUtils.loadAnimation(getContext(), R.anim.register_info_fade_in);
         fadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.register_info_fade_out);
 
+        // Metody do sprawdzania wpisywanych haseł przez użytkownika
         TextWatcher passwordWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 firstPassword = new Password(Password1Field.getText().toString());
@@ -141,8 +144,8 @@ public class SampleFragment3 extends Fragment {
         registerButton.setOnClickListener(view -> {
             String email = EmailField.getText().toString();
             String password = Password1Field.getText().toString();
-            userRegister register = new userRegister();
-            register.registerUser(email, password, getActivity());
+            user user = new user();
+            user.registerUser(email, password, getActivity());
         });
         return root;
     }
@@ -154,6 +157,11 @@ public class SampleFragment3 extends Fragment {
                 imageName, "drawable", requireActivity().getPackageName()));
     }
 
+    /**
+     * Metoda do zmiany stanu paska progresu
+     * @param progressValue wartość progresu na pasku
+     * @param colorResourceID kolor paska progresu
+     */
     private void progressBarSetup(int progressValue, int colorResourceID) {
         ColorStateList colorStateList = ColorStateList.valueOf(getResources().getColor(colorResourceID));
         progressBar.setProgress(progressValue);
@@ -161,6 +169,12 @@ public class SampleFragment3 extends Fragment {
         registrationLock.setImageTintList(colorStateList);
     }
 
+    /**
+     * Metoda do zmiany animacji komponentu
+     * @param cardView komponent
+     * @param animation animacja
+     * @param setVisibility ustawienie widzialności
+     */
     private void animationChange(CardView cardView, Animation animation, int setVisibility) {
         cardView.startAnimation(animation);
         cardView.setVisibility(setVisibility);
