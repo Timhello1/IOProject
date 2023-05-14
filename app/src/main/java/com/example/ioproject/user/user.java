@@ -1,11 +1,13 @@
 package com.example.ioproject.user;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.ioproject.shop.ShopActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +38,7 @@ public class user {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 if (code.equals("SerialCodeUwU")){
+                                        // TODO POPRAWIC
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                                     Map<String, Object> admin = new HashMap<>();
                                     admin.put("email",email);
@@ -94,7 +97,8 @@ public class user {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = userConnection.getCurrentUser();
                                 Toast.makeText(activity, "LogIn succesfull", Toast.LENGTH_SHORT).show();
-
+                                Intent intent = new Intent(activity, ShopActivity.class);
+                                activity.startActivity(intent);
                             } else {
                                 Toast.makeText(activity, "LogIn failed", Toast.LENGTH_SHORT).show();
                             }
