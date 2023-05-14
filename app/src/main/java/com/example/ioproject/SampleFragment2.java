@@ -45,11 +45,7 @@ public class SampleFragment2 extends Fragment {
                 String email = emailField.getText().toString();
                 String password = passwordField.getText().toString();
                 user user = new user();
-                //user.loginUser(email, password, getActivity());
-                //TODO LOGOWANIE I GUZIK SKIPA DO GŁÓWNEGO MENU
-                Intent intent = new Intent(view.getContext(),ShopActivity.class);
-                startActivity(intent);
-
+                user.loginUser(email, password, getActivity());
             }
         });
         return root;
