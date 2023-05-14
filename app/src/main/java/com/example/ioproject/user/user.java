@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.ioproject.shop.AdminActivity;
 import com.example.ioproject.shop.ShopActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,11 +16,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 public class user {
     private final FirebaseAuth userConnection;
@@ -95,10 +100,42 @@ public class user {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                CollectionReference adminsRef = db.collection("admins");
+                                Query query = adminsRef.whereEqualTo("email",email);
+                                query.get().addOnCompleteListener(task1 -> {
+                                    if(task1.isSuccessful()){
+                                        for(QueryDocumentSnapshot documentSnapshot : task1.getResult()){
+                                            String admin = documentSnapshot.getString("email");
+
+                                            if(admin != null && admin.equals(email)){
+                                                Log.d(TAG, "User Exists");
+                                                Toast.makeText(activity, "User exists", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(activity, AdminActivity.class);
+                                                activity.startActivity(intent);
+                                            }
+                                        }
+                                    }
+                                });
+
+                                CollectionReference usersRef = db.collection("users");
+                                Query query1 = usersRef.whereEqualTo("email",email);
+                                query1.get().addOnCompleteListener(task12 -> {
+                                    if (task12.isSuccessful()){
+                                        for(QueryDocumentSnapshot documentSnapshot : task12.getResult()){
+                                            String user = documentSnapshot.getString("email");
+
+                                            if(user != null && user.equals(email)){
+                                                Log.d(TAG,"User Exists");
+                                                Toast.makeText(activity, "User Exists", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(activity, ShopActivity.class);
+                                                activity.startActivity(intent);
+                                            }
+                                        }
+                                    }
+                                });
                                 FirebaseUser user = userConnection.getCurrentUser();
                                 Toast.makeText(activity, "LogIn succesfull", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(activity, ShopActivity.class);
-                                activity.startActivity(intent);
                             } else {
                                 Toast.makeText(activity, "LogIn failed", Toast.LENGTH_SHORT).show();
                             }
