@@ -144,4 +144,20 @@ public class user {
             ;
         }
     }
+    public void deleteUser(Activity activity) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            user.delete()
+                    .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(activity, "Account deleted", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(activity, "Account deletion failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
 }
