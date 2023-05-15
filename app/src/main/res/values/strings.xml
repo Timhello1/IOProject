@@ -21,4 +21,5 @@
     <string name="no_password">BRAK HASŁA</string>
     <string name="old_price">3600 zł</string>
     <string name="serial_code">Podaj kod seryjny admina</string>
+    <string name="product_name">Podaj nazwę produktu</string>
 </resources>
