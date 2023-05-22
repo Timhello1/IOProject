@@ -147,6 +147,33 @@ public class user {
     public void deleteUser(Activity activity) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
+            String userId = user.getUid(); // Get the user ID
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Delete user document from 'users' collection
+            CollectionReference usersRef = db.collection("users");
+            Query userQuery = usersRef.whereEqualTo("email", user.getEmail());
+            userQuery.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        documentSnapshot.getReference().delete();
+                    }
+                }
+            });
+
+            // Delete user document from 'admins' collection
+            CollectionReference adminsRef = db.collection("admins");
+            Query adminQuery = adminsRef.whereEqualTo("email", user.getEmail());
+            adminQuery.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        documentSnapshot.getReference().delete();
+                    }
+                }
+            });
+
+            // Delete the Firebase user account
             user.delete()
                     .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
                         @Override
@@ -160,4 +187,5 @@ public class user {
                     });
         }
     }
+
 }

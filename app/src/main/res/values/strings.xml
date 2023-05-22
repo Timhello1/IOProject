@@ -22,4 +22,15 @@
     <string name="old_price">3600 zł</string>
     <string name="serial_code">Podaj kod seryjny admina</string>
     <string name="product_name">Podaj nazwę produktu</string>
+    <string name="delete_name">Podaj nazwę produktu, który chcesz usunąć</string>
+    <string name="delete_code">Podaj kod oferty, którą chcesz usunąć</string>
+    <string name="update_name">Podaj nową nazwę</string>
+    <string name="update_price">Podaj nową cenę</string>
+    <string name="update_desc">Podaj nowy opis</string>
+    <string name="update_stock">Podaj nową ilość produktu</string>
+    <string name="update_type">Podaj nowy typ produktu</string>
+    <string name="update_code">Podaj nowy kod</string>
+    <string name="update_date">Podaj nową datę</string>
+    <string name="delete">Usuń</string>
+    <string name="update">Modyfikuj</string>
 </resources>
