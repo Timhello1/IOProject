@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.ioproject.R;
+import com.example.ioproject.fragmentsForFutureUse.OrderMake;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class AdminActivity extends AppCompatActivity {
                     replaceFragment(new AddOfferFragment());
                     break;
                 case R.id.settings:
-                    replaceFragment(new SettingsFragment());
+                    replaceFragment(new OrderMake());
                     break;
             }
 

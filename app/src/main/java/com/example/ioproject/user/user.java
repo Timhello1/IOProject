@@ -144,6 +144,7 @@ public class user {
             ;
         }
     }
+
     public void deleteUser(Activity activity) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
