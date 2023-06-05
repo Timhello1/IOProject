@@ -13,6 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DatabaseFetch {
     private FirebaseFirestore firestore;
@@ -23,6 +24,7 @@ public class DatabaseFetch {
 
     /**
      * Metoda do przeszukiwania wszystkich typów ofert
+     *
      * @return typy ofert
      */
     public Task<List<String>> fetchProductTypes() {
@@ -49,14 +51,38 @@ public class DatabaseFetch {
         });
     }
 
-    public Task<List<Product>> fetchProductsByType(String type){
-        Task<QuerySnapshot> task = firestore.collection("products").get();
-//        return task.continueWith(task1 -> {
-//            QuerySnapshot querySnapshot = task1.getResult();
-//            List<DocumentSnapshot> documents = querySnapshot.getDocuments();
-//        })
+    /**
+     * Metoda do przeszukania wszystkich produktów danego typu
+     * @param type typ produktu
+     * @return lista produktów
+     */
+    public Task<List<Product>> fetchProductsByType(String type) {
+        Task<QuerySnapshot> task = firestore.collection("products")
+                .whereEqualTo("Type", type)
+                .get();
 
-        return null;
+        return task.continueWith(task1 -> {
+            if (task1.isSuccessful()) {
+                List<DocumentSnapshot> documents = task1.getResult().getDocuments();
+                List<Product> products = new ArrayList<>();
+
+                for (DocumentSnapshot document : documents) {
+                    String productName = document.getString("Name");
+                    String productDescription = document.getString("Description");
+                    String productPrice = document.getString("Price");
+                    int productStock = Integer.parseInt(
+                            Objects.requireNonNull(document.getString("Stock")));
+
+                    products.add(new Product(productName,productDescription,
+                            productPrice,productStock));
+                }
+
+                return products;
+            } else {
+                Exception exception = task1.getException();
+                Log.e("DatabaseFetch", "Error fetching products by type: " + type, exception);
+                throw exception;
+            }
+        });
     }
-
 }

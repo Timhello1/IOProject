@@ -47,23 +47,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void fetchSpecialOffers() {
-        firestore = FirebaseFirestore.getInstance();
-        firestore.collection("products")
-                .whereEqualTo("Type", "Smartfon")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot document : task.getResult()) {
-                            String productId = document.getId();
-                            String productName = document.getString("Name");
-
-                            Log.d("Product", "ID: " + productId + ", Name: " + productName);
-                        }
-                    }
-                });
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +62,7 @@ public class HomeFragment extends Fragment {
             }
 
             featuredTypes = view.findViewById(R.id.featured_products_recycler_view);
-            featuredTypes.setAdapter(new FeaturedItemsAdapter(productTypes));
+            featuredTypes.setAdapter(new FeaturedItemsAdapter(productTypes,getContext()));
             featuredTypes.addItemDecoration(itemDecoration);
         });
 
@@ -101,9 +84,6 @@ public class HomeFragment extends Fragment {
         specialOffersView.addItemDecoration(itemDecoration);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         specialOffersView.setLayoutManager(linearLayoutManager);
-
-        fetchSpecialOffers();
-
         return view;
     }
 }
