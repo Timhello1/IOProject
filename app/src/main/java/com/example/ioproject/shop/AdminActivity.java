@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.ioproject.R;
+import com.example.ioproject.fragmentsForFutureUse.Basket;
 import com.example.ioproject.fragmentsForFutureUse.OrderMake;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,7 +26,7 @@ public class AdminActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(new OrderMake());
                     break;
                 case R.id.shop:
                     replaceFragment(new AddProductFragment());
@@ -34,7 +35,7 @@ public class AdminActivity extends AppCompatActivity {
                     replaceFragment(new AddOfferFragment());
                     break;
                 case R.id.settings:
-                    replaceFragment(new OrderMake());
+                    replaceFragment(new Basket());
                     break;
             }
 
