@@ -21,13 +21,23 @@ public class Product {
         this.price = price;
     }
 
-    public Product(int id, String name, String productType, String description, String price, int stock) {
+
+    public Product(String name, String description, String price, int stock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Product(int id, String productType, String name, String description, String price) {
         this.id = id;
         this.productType = productType;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.stock = stock;
+    }
+
+    public Product(int id, String name, String productType, String description, String price, int stock) {
     }
 
     public int getId() {

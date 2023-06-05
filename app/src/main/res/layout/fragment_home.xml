@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#FBFBFB">
+    android:id="@+id/container_view"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <!-- Header section -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome TimCałek"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:padding="16dp"
-        android:elevation="50dp"
-        android:translationZ="4dp"
-        android:textColor="@color/black"/>
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchview"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_margin="4dp"
-        android:background="@drawable/search_view_bg"
-        app:queryHint="Search here ..."
-        app:iconifiedByDefault="false"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kategorie"
-        android:textStyle="bold"
-        android:textSize="26sp"
-        android:padding="16dp"
-        android:textColor="@color/black"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/featured_products_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="match_parent"
+        android:background="#FBFBFB"
+        android:orientation="vertical">
 
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"/>
+        <!-- Header section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="50dp"
+            android:padding="16dp"
+            android:text="Welcome TimCałek"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:translationZ="4dp" />
 
-    <!-- Promotions section -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Promocje"
-        android:textStyle="bold"
-        android:textSize="26sp"
-        android:padding="16dp"
-        android:textColor="@color/black"/>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchview"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/search_view_bg"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search here ..." />
 
-    <!-- Grid recycler view for promotions -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/promotions_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Kategorie"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-    <!-- Footer section -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stopka"
-        android:textSize="14sp"
-        android:padding="16dp"
-        android:textColor="#119ABE"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/featured_products_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-</LinearLayout>
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- Promotions section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Promocje"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <!-- Grid recycler view for promotions -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/promotions_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal" />
+
+        <!-- Footer section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Stopka"
+            android:textColor="#119ABE"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
