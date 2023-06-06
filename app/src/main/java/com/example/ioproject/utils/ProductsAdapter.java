@@ -48,9 +48,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
             TextView productPrice = itemView.findViewById(R.id.product_price);
             productPrice.setText(product.getPrice());
-            itemView.setOnClickListener(view -> {
-                // TODO przeniesienie do wybranego produktu
-            });
+
+            TextView productDescription = itemView.findViewById(R.id.product_description);
+            productDescription.setText(product.getDescription());
+
         }
 
     }
