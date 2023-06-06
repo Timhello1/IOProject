@@ -33,4 +33,7 @@
     <string name="update_date">Podaj nową datę</string>
     <string name="delete">Usuń</string>
     <string name="update">Modyfikuj</string>
+    <string name="categories">Kategorie</string>
+    <string name="prod_name">Nazwa produktu</string>
+    <string name="stock">Dostępnych sztuk:</string>
 </resources>
