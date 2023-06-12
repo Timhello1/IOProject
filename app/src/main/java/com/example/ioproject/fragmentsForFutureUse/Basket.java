@@ -5,12 +5,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ioproject.R;
@@ -65,6 +67,18 @@ public class Basket extends Fragment {
             fetchOrders();
         }
 
+        Button navigateButton= view.findViewById(R.id.button12);
+        navigateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment_basketChoices basketChoices = new Fragment_basketChoices();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(container.getId(), basketChoices); // Replace "R.id.fragment_container" with the ID of the container in your activity where you want to replace the fragment
+                transaction.addToBackStack(null); // Optional: Add the transaction to the back stack
+                transaction.commit(); // Commit the transaction
+            }
+        });
+
         return view;
     }
 
@@ -83,11 +97,11 @@ public class Basket extends Fragment {
                         String name = document.getString("Name");
                         String price = document.getString("Price");
 
-                        ordersList.add(name + ": $" + price);
+                        ordersList.add(name + ": zl" + price);
                         sum += Double.parseDouble(price);
                     }
                     orderAdapter.notifyDataSetChanged();
-                    sumTextView.setText("Total: $" + sum);
+                    sumTextView.setText("Total: zl" + sum);
                 } else {
                     // Handle error
                 }
