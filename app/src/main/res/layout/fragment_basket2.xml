@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout15"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragmentsForFutureUse.Basket">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -13,35 +14,47 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="476dp"
+        android:layout_marginBottom="640dp"
         android:background="#F1F1F1"
-        app:cardElevation="0dp"
+        app:cardElevation="60dp"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/sumTextView"
-        android:layout_width="275dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginBottom="82dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button12"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="139dp"
+        android:layout_height="71dp"
         android:layout_marginStart="151dp"
         android:layout_marginEnd="166dp"
         android:layout_marginBottom="160dp"
         android:text="Zamów"
+        app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="343dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="352dp"
+        android:elevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/sumTextView"
+            android:layout_width="231dp"
+            android:layout_height="81dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="56dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
