@@ -7,74 +7,99 @@
     android:layout_height="match_parent"
     tools:context=".fragmentsForFutureUse.Fragment_basketChoices">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="107dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="612dp"
-        android:text="Kartą"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="107dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="480dp"
-        android:text="Na adres"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="107dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginBottom="608dp"
-        android:text="Przelewem"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="107dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="288dp"
-        android:layout_marginBottom="468dp"
-        android:text="Do sklepu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="120dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="614dp"
-        android:text="Płatność"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
-
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="120dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="460dp"
-        android:text="Dostawa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
-
     <Button
         android:id="@+id/button13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginBottom="122dp"
+        android:layout_width="201dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="72dp"
         android:text="Zamów"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="429dp"
+        android:layout_height="1002dp"
+        android:layout_marginBottom="180dp"
+        android:src="@drawable/login_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="322dp"
+        android:layout_height="257dp"
+        android:layout_marginBottom="284dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Dostawa"
+                    android:textAlignment="center"
+                    android:textSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="187dp"
+                    android:layout_height="match_parent"
+                    android:textAlignment="viewStart"
+                    tools:layout_conversion_absoluteHeight="51dp"
+                    tools:layout_conversion_absoluteWidth="120dp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="149dp"
+                    android:layout_height="109dp"
+                    android:text="Na adres"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="30dp"
+                    tools:layout_conversion_absoluteWidth="107dp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="174dp"
+                    android:layout_height="109dp"
+                    android:text="Do sklepu"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_conversion_absoluteHeight="30dp"
+                    tools:layout_conversion_absoluteWidth="107dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
