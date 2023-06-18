@@ -5,89 +5,104 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".shop.AddProductFragment">
-
-    <EditText
-        android:id="@+id/ProductName"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="122dp"
-        android:ems="10"
-        android:hint="@string/product_name"
-        android:inputType="textPersonName"
-        android:text="@string/product_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/productName2"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="@string/product_name"
-        android:inputType="textPersonName"
-        android:text="czas dostawy"
-        app:layout_constraintBottom_toTopOf="@+id/ProductType"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/ProductType"
-        android:layout_width="231dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="484dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Typ produktu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/ProductPrice"
-        android:layout_width="230dp"
-        android:layout_height="67dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="308dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="cena"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="144dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="284dp"
         android:text="Add"
+        app:cornerRadius="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/ProductDescription"
-        android:layout_width="225dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="288dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Opis"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_marginTop="124dp"
+        app:cardBackgroundColor="@color/white"
+        app:cornerRadius="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/ProductStock"
-        android:layout_width="226dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="112dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="ilość na magazynie"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="418dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="460dp"
+            android:background="@color/white">
+
+            <EditText
+                android:id="@+id/ProductStock"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="ilość na magazynie"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/ProductPrice"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="cena"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/ProductStock"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/ProductType"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Typ produktu"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/ProductPrice"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/ProductName"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="@string/product_name"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/ProductDescription"
+                app:layout_constraintStart_toEndOf="@+id/ProductType" />
+
+            <EditText
+                android:id="@+id/productName2"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="czas dostawy"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ProductStock" />
+
+            <EditText
+                android:id="@+id/ProductDescription"
+                android:layout_width="209dp"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="Opis"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/productName2"
+                app:layout_constraintStart_toEndOf="@+id/ProductPrice" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
