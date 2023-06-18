@@ -13,12 +13,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ioproject.R;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mailjet.client.ClientOptions;
 import com.mailjet.client.MailjetClient;
 import com.mailjet.client.errors.MailjetException;
@@ -63,24 +66,51 @@ public class BasketTransferAddress extends Fragment {
         query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<String> ordersList = new ArrayList<>();
-                int sum = 0;
+                final int[] sum = {0};
+                final double[] maxDelivery = {0.0};
+                final String[] maxDeliveryProductName = {""};
+
+                List<Task<QuerySnapshot>> productQueryTasks = new ArrayList<>();
+
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    String name = document.getString("Name");
+                    String productName = document.getString("Name");
                     String price = document.getString("Price");
 
-                    ordersList.add(name + ": zl" + price);
-                    sum += Double.parseDouble(price);
+                    // Create a query to retrieve the product by name from "products" collection
+                    Query productQuery = db.collection("products").whereEqualTo("Name", productName);
+
+                    Task<QuerySnapshot> productQueryTask = productQuery.get().addOnSuccessListener(productQuerySnapshot -> {
+                        for (QueryDocumentSnapshot productDocument : productQuerySnapshot) {
+                            String deliveryStr = productDocument.getString("Delivery");
+                            double delivery = Double.parseDouble(deliveryStr);
+
+                            if (delivery > maxDelivery[0]) {
+                                maxDelivery[0] = delivery;
+                                maxDeliveryProductName[0] = productName;
+                            }
+
+                            ordersList.add(productName + ": zl" + price);
+                            sum[0] += Double.parseDouble(price);
+                        }
+                    });
+
+                    productQueryTasks.add(productQueryTask);
                 }
 
-                String ordersString = String.join("\n", ordersList);
-                callback.onOrdersFetched(ordersString, sum);
+                // Wait for all product queries to complete
+                Task<List<QuerySnapshot>> allProductQueryTasks = Tasks.whenAllSuccess(productQueryTasks);
+                allProductQueryTasks.addOnCompleteListener(allQueryTask -> {
+                    String ordersString = String.join("\n", ordersList);
+                    callback.onOrdersFetched(ordersString, sum[0], maxDeliveryProductName[0], maxDelivery[0]);
+                });
             } else {
-                callback.onOrdersFetched("", 0);
+                callback.onOrdersFetched("", 0, "", 0);
             }
         });
     }
 
-    private void sendEmail(String orders, int sum) {
+
+    private void sendEmail(String orders, int sum, String maxDeliveryProductName, double maxDelivery) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userEmail = user.getEmail();
 
@@ -113,7 +143,10 @@ public class BasketTransferAddress extends Fragment {
                                     "<p>Orders:</p>" +
                                     "<p>" + orders + "</p>" +
                                     "<p>Total: zl" + sum + "</p>" +
-                                    "<p> Po opłaceniu zamówienie zostanie dostarczone na adres:" + city + " " + street + " "+ houseNumber +"</p>")
+                                    "<p> Po opłaceniu zamówienie zostanie dostarczone na adres:" + city + " " + street + " "+ houseNumber +"</p>" +
+                                    "<p>Product z najdłuższą dostawą(Tyle zajmie dostawa wszystkich przedmiotów ponieważ pakowane są one w jedną paczkę ):</p>" +
+                                            "<p>Nazwa: " + maxDeliveryProductName + "</p>" +
+                                            "<p>Ilość dni: " + maxDelivery + "</p>")
                             .subject("Receipt")
                             .trackOpens(TrackOpens.ENABLED)
                             .header("test-header-key", "test-value")
@@ -162,8 +195,8 @@ public class BasketTransferAddress extends Fragment {
                 if (currentUser != null) {
                     fetchOrders(db, currentUserEmail, new BasketTransferAddress.EmailTaskCallback() {
                         @Override
-                        public void onOrdersFetched(String orders, int sum) {
-                            sendEmail(orders, sum);
+                        public void onOrdersFetched(String orders, int sum, String maxDeliveryProductName, double maxDelivery) {
+                            sendEmail(orders, sum, maxDeliveryProductName, maxDelivery);
                             deleteUserOrders();
                         }
                     });
@@ -177,6 +210,6 @@ public class BasketTransferAddress extends Fragment {
     }
 
     private interface EmailTaskCallback {
-        void onOrdersFetched(String orders, int sum);
+        void onOrdersFetched(String orders, int sum, String maxDeliveryProductName, double maxDelivery);
     }
 }
