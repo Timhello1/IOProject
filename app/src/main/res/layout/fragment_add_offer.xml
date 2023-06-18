@@ -5,76 +5,78 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".shop.AddProductFragment">
-
-    <EditText
-        android:id="@+id/OfferName"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="122dp"
-        android:ems="10"
-        android:hint="@string/product_name"
-        android:inputType="textPersonName"
-        android:text="Podaj mail użytkownika"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/OfferPrice"
-        android:layout_width="231dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="484dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Podaj nową cenę"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/OfferCode"
-        android:layout_width="230dp"
-        android:layout_height="67dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="308dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Podaj kod"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="60dp"
-        android:text="Add"
+        android:layout_width="157dp"
+        android:layout_height="82dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="332dp"
+        android:text="Dodaj"
+        app:cornerRadius="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/OfferDescription"
-        android:layout_width="225dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="288dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Opis"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="430dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="550dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/OfferDate"
-        android:layout_width="226dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="112dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Podaj do kiedy"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/OfferName"
+            android:layout_width="215dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Podaj mail użytkownika"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/OfferPrice"
+            android:layout_width="215dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Podaj nową cenę"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/OfferCode"
+            android:layout_width="215dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Podaj kod"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OfferName" />
+
+        <EditText
+            android:id="@+id/OfferDate"
+            android:layout_width="215dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Podaj do kiedy"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OfferPrice" />
+
+        <EditText
+            android:id="@+id/OfferDescription"
+            android:layout_width="430dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Opis"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
