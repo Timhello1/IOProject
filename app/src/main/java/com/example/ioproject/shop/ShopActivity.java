@@ -9,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.ioproject.R;
+import com.example.ioproject.fragmentsForFutureUse.Basket;
+import com.example.ioproject.fragmentsForFutureUse.OrderMake;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ShopActivity extends AppCompatActivity {
@@ -30,10 +32,10 @@ public class ShopActivity extends AppCompatActivity {
                     replaceFragment(new ShopFragment());
                     break;
                 case R.id.discounts:
-                    replaceFragment(new DiscountsFragment());
+                    replaceFragment(new OrderMake());
                     break;
                 case R.id.settings:
-                    replaceFragment(new SettingsFragment());
+                    replaceFragment(new Basket());
                     break;
             }
 

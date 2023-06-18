@@ -34,7 +34,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private RecyclerView featuredTypes, specialOffersView;
-    private FirebaseFirestore firestore;
     private DatabaseFetch databaseFetch;
 
     public HomeFragment() {

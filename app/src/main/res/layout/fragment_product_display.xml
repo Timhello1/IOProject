@@ -6,12 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".shop.ProductDisplayFragment"
     android:id="@+id/product_view"
-    android:background="@color/white">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productTypes_recycler_view"
+    android:background="@drawable/gradient">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/item_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:text="@string/item_titles"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:background="@drawable/custom_progress_bar"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productTypes_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/item_group" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

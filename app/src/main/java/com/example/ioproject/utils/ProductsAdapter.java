@@ -47,11 +47,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             productTitle.setText(product.getName());
 
             TextView productPrice = itemView.findViewById(R.id.product_price);
-            productPrice.setText(product.getPrice());
+            productPrice.setText(product.getPrice() + " zł");
 
             TextView productDescription = itemView.findViewById(R.id.product_description);
             productDescription.setText(product.getDescription());
+            TextView stockCount = itemView.findViewById(R.id.stock_count);
+            if(product.getStock() > 0){
+                stockCount.setText(String.valueOf(product.getStock()));
+            }else{
+                TextView stock = itemView.findViewById(R.id.textView3);
+                stock.setText("Out of stock.");
+                stockCount.setText("");
 
+            }
         }
 
     }

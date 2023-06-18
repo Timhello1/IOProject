@@ -112,6 +112,7 @@ public class user {
                                                 Log.d(TAG, "User Exists");
                                                 Toast.makeText(activity, "User exists", Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(activity, AdminActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 activity.startActivity(intent);
                                             }
                                         }
@@ -129,6 +130,7 @@ public class user {
                                                 Log.d(TAG,"User Exists");
                                                 Toast.makeText(activity, "User Exists", Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(activity, ShopActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 activity.startActivity(intent);
                                             }
                                         }

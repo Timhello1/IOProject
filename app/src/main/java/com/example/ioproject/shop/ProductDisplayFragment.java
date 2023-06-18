@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.ioproject.R;
 import com.example.ioproject.database.DatabaseFetch;
@@ -37,7 +38,8 @@ public class ProductDisplayFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_display, container, false);
         //VerticalDecoration itemDecoration = new VerticalDecoration(50);
-        // Odczytanie przekazanej wartości
+
+        // Odczytanie przekazanej wartości typu produktu
         Bundle bundle = getArguments();
         if (bundle != null) {
             String productType = bundle.getString("productType");
@@ -49,6 +51,8 @@ public class ProductDisplayFragment extends Fragment {
                         //productTypes.addItemDecoration(itemDecoration);
                         productTypes.setAdapter(productsAdapter);
                     });
+            TextView title = view.findViewById(R.id.item_group);
+            title.setText(bundle.getString("productType"));
         }
 
         return view;
