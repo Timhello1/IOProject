@@ -41,6 +41,8 @@ public class AddProductFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
 
+
+
         binding.button2.setOnClickListener(v -> {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
