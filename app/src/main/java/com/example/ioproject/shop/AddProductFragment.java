@@ -47,11 +47,13 @@ public class AddProductFragment extends Fragment {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             Map<String, Object> product = new HashMap<>();
+            product.put("Delivery",binding.productName2.getText().toString());
             product.put("Name",binding.ProductName.getText().toString());
             product.put("Type",binding.ProductType.getText().toString());
             product.put("Description",binding.ProductDescription.getText().toString());
             product.put("Price",binding.ProductPrice.getText().toString());
             product.put("Stock",binding.ProductStock.getText().toString());
+
 
             db.collection("products")
                     .add(product)
