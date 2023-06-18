@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    class SampleAdapter extends FragmentStateAdapter {
+    static class SampleAdapter extends FragmentStateAdapter {
 
         public SampleAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
@@ -44,22 +44,15 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            switch (position) {
-                case 0:
-                    return new SampleFragment();
-                case 1:
-                    return new SampleFragment2();
-                case 2:
-                    return new SampleFragment3();
-                // Add more cases as needed for additional fragments
-                default:
-                    return new SampleFragment();
+            if (position == 1) {
+                return new SampleFragment3();
             }
+            return new SampleFragment2();
         }
 
         @Override
         public int getItemCount() {
-            return 3;
+            return 2;
         }
     }
 }

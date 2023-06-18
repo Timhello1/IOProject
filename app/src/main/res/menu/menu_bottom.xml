@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="@string/menu_tittle_home"
         android:icon="@drawable/bottom_menu_home_icon"/>
 
     <item
         android:id="@+id/shop"
-        android:title="Shop"
+        android:title="@string/menu_title_shop"
         android:icon="@drawable/bottom_menu_icon_shop"
         />
 
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/discounts"
-        android:title="Discounts"
+        android:title="@string/menu_title_discounts"
         android:icon="@drawable/bottom_menu_icon_discount" />
     <item
         android:id="@+id/settings"
-        android:title="Settings"
+        android:title="@string/menu_title_settings"
         android:icon="@drawable/bottom_menu_icon_settings" />
 
 </menu>

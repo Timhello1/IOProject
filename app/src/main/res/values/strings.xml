@@ -36,4 +36,9 @@
     <string name="categories">Kategorie</string>
     <string name="prod_name">Nazwa produktu</string>
     <string name="stock">Dostępnych sztuk:</string>
+    <string name="item_titles">SMARTFONY</string>
+    <string name="menu_title_shop">Kategorie</string>
+    <string name="menu_title_discounts">Zamówienie</string>
+    <string name="menu_title_settings">Koszyk</string>
+    <string name="menu_tittle_home">Home</string>
 </resources>
