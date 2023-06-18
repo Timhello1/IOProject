@@ -5,14 +5,15 @@
     android:id="@+id/frameLayout18"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".fragmentsForFutureUse.BasketTransferAddress">
 
     <Button
         android:id="@+id/button17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="176dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="132dp"
         android:onClick="sendEmail"
         android:text="Zamów"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,35 +23,36 @@
         android:id="@+id/editTextTextPersonName18"
         android:layout_width="262dp"
         android:layout_height="81dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="600dp"
+        android:layout_marginStart="84dp"
+        android:background="@color/white"
         android:ems="10"
+        android:hint="Miasto"
         android:inputType="textPersonName"
-        android:text="Miasto"
-        app:layout_constraintBottom_toTopOf="@+id/button17"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName22"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName22"
         android:layout_width="262dp"
         android:layout_height="81dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="472dp"
+        android:layout_marginStart="84dp"
+        android:background="@color/white"
         android:ems="10"
+        android:hint="Ulica"
         android:inputType="textPersonName"
-        android:text="Ulica"
-        app:layout_constraintBottom_toTopOf="@+id/button17"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName23"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName23"
         android:layout_width="262dp"
         android:layout_height="81dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="188dp"
+        android:background="@color/white"
         android:ems="10"
+        android:hint="Numer Domu"
         android:inputType="textPersonName"
-        android:text="Numer Domu"
         app:layout_constraintBottom_toTopOf="@+id/button17"
         app:layout_constraintStart_toStartOf="parent" />
 
