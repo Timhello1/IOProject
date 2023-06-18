@@ -26,24 +26,18 @@ public class AdminActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         MenuItem shop  = bottomNavigationView.getMenu().findItem(R.id.shop);
-        shop.setTitle("Dodaj produkt");
+        shop.setTitle("Menu Admina");
         MenuItem discounts = bottomNavigationView.getMenu().findItem(R.id.discounts);
-        discounts.setTitle("Zamówienie");
+        discounts.setTitle("In dev.");
         MenuItem settings = bottomNavigationView.getMenu().findItem(R.id.settings);
-        settings.setTitle("Koszyk");
+        settings.setTitle("In dev.");
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    replaceFragment(new AddOfferFragment());
+                    replaceFragment(new HomeFragment());
                     break;
                 case R.id.shop:
-                    replaceFragment(new AddProductFragment());
-                    break;
-                case R.id.discounts:
-                    replaceFragment(new OrderMake());
-                    break;
-                case R.id.settings:
-                    replaceFragment(new Basket());
+                    replaceFragment(new AdminMenu());
                     break;
             }
 
