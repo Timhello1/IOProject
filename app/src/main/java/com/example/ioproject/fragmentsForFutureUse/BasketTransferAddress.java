@@ -209,7 +209,7 @@ public class BasketTransferAddress extends Fragment {
         return view;
     }
 
-    private interface EmailTaskCallback {
+    interface EmailTaskCallback {
         void onOrdersFetched(String orders, int sum, String maxDeliveryProductName, double maxDelivery);
     }
 }
