@@ -12,19 +12,22 @@
         android:layout_width="201dp"
         android:layout_height="86dp"
         android:layout_marginStart="116dp"
+        android:layout_marginEnd="116dp"
         android:layout_marginBottom="72dp"
         android:text="Zamów"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="429dp"
         android:layout_height="1002dp"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="175dp"
         android:src="@drawable/login_image"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView

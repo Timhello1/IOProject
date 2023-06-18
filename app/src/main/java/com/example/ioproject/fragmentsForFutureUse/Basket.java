@@ -79,6 +79,7 @@ public class Basket extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -97,11 +98,11 @@ public class Basket extends Fragment {
                         String name = document.getString("Name");
                         String price = document.getString("Price");
 
-                        ordersList.add(name + ": zl" + price);
+                        ordersList.add(name + ": " + price + " zl");
                         sum += Double.parseDouble(price);
                     }
                     orderAdapter.notifyDataSetChanged();
-                    sumTextView.setText("Total: zl" + sum);
+                    sumTextView.setText("Total: " + sum + " zl");
                 } else {
                     // Handle error
                 }
@@ -127,6 +128,14 @@ public class Basket extends Fragment {
         public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
             String order = orders.get(position);
             holder.orderTextView.setText(order);
+
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String orderName = order.split(":")[0].trim();
+                    deleteOrderFromDatabase(orderName);
+                }
+            });
         }
 
         @Override
@@ -136,11 +145,29 @@ public class Basket extends Fragment {
 
         public class OrderViewHolder extends RecyclerView.ViewHolder {
             private TextView orderTextView;
+            private Button deleteButton;
 
             public OrderViewHolder(@NonNull View itemView) {
                 super(itemView);
                 orderTextView = itemView.findViewById(R.id.order_text_view);
+                deleteButton = itemView.findViewById(R.id.button18);
             }
+        }
+        private void deleteOrderFromDatabase(String orderName){
+            CollectionReference ordersRef = db.collection("orders");
+            Query query = ordersRef.whereEqualTo("Email", currentUserEmail).whereEqualTo("Name", orderName);
+
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                            documentSnapshot.getReference().delete();
+                        }
+                        fetchOrders();
+                    }
+                }
+            });
         }
     }
 }
