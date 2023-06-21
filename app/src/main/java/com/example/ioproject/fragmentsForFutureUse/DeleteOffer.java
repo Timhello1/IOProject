@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class DeleteOffer extends Fragment {
@@ -44,32 +46,56 @@ public class DeleteOffer extends Fragment {
         return view;
     }
     private void deleteDocument(){
-        String documentName = documentNameEditText.getText().toString().trim();
-        if (!documentName.isEmpty()){
-            DocumentReference documentReference = firestore.collection("offers").document(documentName);
-
-            documentReference.delete()
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+        String documentCode = documentNameEditText.getText().toString().trim();
+        if (!documentCode.isEmpty()){
+            Query query = firestore.collection("offers").whereEqualTo("Code", documentCode);
+            query.get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(getActivity(), "Dokument usunięty", Toast.LENGTH_SHORT).show();
+                                QuerySnapshot querySnapshot = task.getResult();
+                                if (querySnapshot != null && !querySnapshot.isEmpty()){
+                                    DocumentReference documentReference = querySnapshot.getDocuments().get(0).getReference();
+                                    documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(getActivity(), "Dokument usunięto", Toast.LENGTH_SHORT).show();
+                                            }else{
+                                                Toast.makeText(getActivity(), "Nie udało się usunąć dokumentu", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    if (e instanceof FirebaseFirestoreException) {
+                                                        FirebaseFirestoreException firebaseFirestoreException = (FirebaseFirestoreException) e;
+                                                        Toast.makeText(getActivity(), "Error: " + firebaseFirestoreException.getCode(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                }else {
+                                    Toast.makeText(getActivity(), "Nie znaleziono dokumentu", Toast.LENGTH_SHORT).show();
+                                }
                             }else {
-                                Toast.makeText(getActivity(), "Nie udało się usunąć", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Błąd podczas wyszukiwania dokumentu", Toast.LENGTH_SHORT).show();
                             }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            if (e instanceof FirebaseFirestoreException){
-                                FirebaseFirestoreException firebaseFirestoreException = (FirebaseFirestoreException)  e;
+                            if (e instanceof FirebaseFirestoreException) {
+                                FirebaseFirestoreException firebaseFirestoreException = (FirebaseFirestoreException) e;
                                 Toast.makeText(getActivity(), "Error: " + firebaseFirestoreException.getCode(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
         }else{
-            Toast.makeText(getActivity(), "Podaj nazwę produktu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Podaj kod oferty", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,25 +59,38 @@ public class UpdateProduct extends Fragment {
         String updatedType = typeEditText.getText().toString().trim();
 
         if (!documentName.isEmpty()) {
-            DocumentReference documentReference = firestore.collection("product").document(documentName);
-
-            Map<String, Object> updatedData = new HashMap<>();
-            updatedData.put("Description", updatedDesc);
-            updatedData.put("Price", updatedPrice);
-            updatedData.put("Stock", updatedStock);
-            updatedData.put("Type", updatedType);
-
-            documentReference.update(updatedData)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+            Query query = firestore.collection("products").whereEqualTo("Name", documentName);
+            query.get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getActivity(), "Document updated successfully", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getActivity(), "Failed to update document", Toast.LENGTH_SHORT).show();
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null && !querySnapshot.isEmpty()){
+                                DocumentReference documentReference = querySnapshot.getDocuments().get(0).getReference();
+
+                                Map<String, Object> updatedData = new HashMap<>();
+                                updatedData.put("Description", updatedDesc);
+                                updatedData.put("Price", updatedPrice);
+                                updatedData.put("Stock", updatedStock);
+                                updatedData.put("Type", updatedType);
+
+                                documentReference.update(updatedData)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(getActivity(), "Document updated successfully", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(getActivity(), "Failed to update document", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            }else {
+                                Toast.makeText(getActivity(), "No document found", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
         } else {
             Toast.makeText(getActivity(), "Please enter a document name", Toast.LENGTH_SHORT).show();
         }
